@@ -1,6 +1,10 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Bodoni_Moda } from "next/font/google";
 import "./globals.css";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+import { CartProvider } from "./components/CartProvider";
+import CartDrawer from "./components/CartDrawer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -10,6 +14,13 @@ const geistSans = Geist({
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+});
+
+const headingFont = Bodoni_Moda({
+  subsets: ["latin"],
+  weight: ["500"],
+  variable: "--font-heading",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -25,9 +36,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${headingFont.variable} antialiased  bg-[#F7F7F7]`}
       >
-        {children}
+        <CartProvider>
+          <Header />
+          {children}
+          <Footer />
+          <CartDrawer />
+        </CartProvider>
       </body>
     </html>
   );

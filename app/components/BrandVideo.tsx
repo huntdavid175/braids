@@ -1,0 +1,36 @@
+"use client";
+import { motion } from "framer-motion";
+
+export default function BrandVideo() {
+  return (
+    <motion.section
+      className="mt-24"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.9, ease: "easeOut" }}
+    >
+      <div className="relative rounded-3xl overflow-hidden">
+        <video
+          className="w-full h-[360px] md:h-[520px] object-cover"
+          autoPlay
+          muted
+          loop
+          playsInline
+          src="https://www.pexels.com/download/video/8141584/"
+        />
+        <div className="pointer-events-none absolute inset-0 bg-black/50" />
+        <motion.div
+          className="absolute inset-0 flex items-center justify-center px-6"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.9, ease: "easeOut" }}
+        >
+          <h3 className="font-heading text-white text-4xl md:text-6xl text-center leading-tight drop-shadow">
+            The power behind
+            <br /> every glow
+          </h3>
+        </motion.div>
+      </div>
+    </motion.section>
+  );
+}
