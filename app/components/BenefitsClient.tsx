@@ -37,11 +37,13 @@ export default function BenefitsClient({
           className="p-6 md:p-8 order-2 md:order-1 flex flex-col items-start"
           variants={item}
         >
-          <h2
+          <div
             className="font-heading text-5xl md:text-7xl leading-tight tracking-tight text-black ls-title"
+            role="heading"
+            aria-level={2}
             dangerouslySetInnerHTML={{ __html: title }}
           />
-          <p
+          <div
             className="mt-6 text-sm md:text-base text-black/60 "
             dangerouslySetInnerHTML={{ __html: description }}
           />

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Hero from "./components/Hero";
-import Benefits from "./components/BenefitsServer";
+import Benefits from "./components/Benefits";
 import BestSellers from "./components/BestSellers";
 import SkinConcerns from "./components/SkinConcerns";
 import BrandVideo from "./components/BrandVideo";
