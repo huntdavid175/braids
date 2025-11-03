@@ -14,6 +14,11 @@ const nextConfig: NextConfig = {
         hostname: "refresh-botanicals.local",
         pathname: "/**",
       },
+      {
+        protocol: "http",
+        hostname: "shop.regsma.com",
+        pathname: "/**",
+      },
     ],
   },
 };
