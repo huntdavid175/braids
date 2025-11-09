@@ -98,8 +98,8 @@ export default function Hero({
         {/* Right: Image (do not animate LCP) */}
         <div className="relative w-full h-full min-h-[440px] md:min-h-[640px] rounded-3xl overflow-hidden">
           <Image
-            // src={imageOverride || ""}
-            src="/assets/images/hero2.png"
+            src={imageOverride || ""}
+            // src="/assets/images/hero2.png"
             alt="Smiling woman applying skincare cream"
             fill
             sizes="(max-width: 768px) 100vw, 50vw"
