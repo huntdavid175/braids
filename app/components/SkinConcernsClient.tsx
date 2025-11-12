@@ -28,12 +28,12 @@ export default function SkinConcernsClient({
   const services = [
     {
       title: "Braids",
-      imageUrl: "/assets/images/client_1.jpg",
+      imageUrl: "/assets/images/services/braids.webp",
       slug: "braids",
     },
     {
       title: "Men's Braids",
-      imageUrl: "/assets/images/client_2.jpg",
+      imageUrl: "/assets/images/services/men_braids.webp",
       slug: "men-braids",
     },
     {
