@@ -1,4 +1,4 @@
-import Testimonials from "@/app/components/Testimonials";
+import RecentWorks from "@/app/components/RecentWorks";
 import BrandVideo from "@/app/components/BrandVideo";
 import ServicesGridClient from "@/app/components/ServicesGridClient";
 import ShopHero from "@/app/components/ShopHero";
@@ -17,7 +17,7 @@ export async function generateMetadata({
         .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
         .join(" ")
     : "Services";
-  return { title: `${pretty} | Braind And Beyond` };
+  return { title: `${pretty} | Braid And Beyond` };
 }
 
 export default async function ServicePage({
@@ -43,7 +43,7 @@ export default async function ServicePage({
       />
       <ServicesGridClient serviceId={serviceId} />
       <BrandVideo />
-      <Testimonials />
+      <RecentWorks />
     </main>
   );
 }

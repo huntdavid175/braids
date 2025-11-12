@@ -63,7 +63,7 @@ export default function Hero({
               href="/shop"
               className="inline-flex items-center justify-center rounded-full bg-[#80461B] text-white px-8 py-4 text-base font-medium transition-colors hover:bg-black"
             >
-              Shop Now
+              Contact Us
             </Link>
           </div>
 

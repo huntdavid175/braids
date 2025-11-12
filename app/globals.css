@@ -61,6 +61,26 @@ body {
   }
 }
 
+/* Infinite scroll animation for testimonials */
+.animate-scroll {
+  display: flex;
+  will-change: transform;
+  animation: scroll-testimonials 20s linear infinite;
+}
+
+@keyframes scroll-testimonials {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-scroll:hover {
+  animation-play-state: paused;
+}
+
 /* Policies content heading style to match hero titles */
 .policy-content h2 {
   font-family: var(--font-heading), serif;

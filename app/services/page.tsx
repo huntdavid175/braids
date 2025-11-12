@@ -1,12 +1,12 @@
 import React from "react";
 import type { Metadata } from "next";
 import BrandVideo from "../components/BrandVideo";
-import Testimonials from "../components/Testimonials";
+import RecentWorks from "../components/RecentWorks";
 import ShopHero from "../components/ShopHero";
 import SkinConcerns from "../components/SkinConcerns";
 
 export const metadata: Metadata = {
-  title: "Services | Braind And Beyond",
+  title: "Services | Braid And Beyond",
 };
 
 const page = async () => {
@@ -17,9 +17,9 @@ const page = async () => {
         description="Discover our range of professional braiding services designed to enhance your natural beauty."
         imageUrl="/assets/images/client_1.jpg"
       />
-      <SkinConcerns title="Our Top Braiding Services" />
+      <SkinConcerns title="Our Top Services" />
       <BrandVideo />
-      <Testimonials />
+      <RecentWorks />
     </main>
   );
 };

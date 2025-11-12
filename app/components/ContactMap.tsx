@@ -48,10 +48,10 @@ export default function ContactMap() {
         <p className="text-base text-black/80">
           <strong>Email:</strong>{" "}
           <a
-            href="mailto:info@braindandbeyond.com"
+            href="mailto:info@braidandbeyond.com"
             className="text-[#80461B] hover:underline"
           >
-            info@braindandbeyond.com
+            info@braidandbeyond.com
           </a>
         </p>
       </div>

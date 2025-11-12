@@ -5,6 +5,7 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import { CartProvider } from "./components/CartProvider";
 import CartDrawer from "./components/CartDrawer";
+import WhatsAppChat from "./components/WhatsAppChat";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -25,8 +26,8 @@ const headingFont = Bodoni_Moda({
 
 export const metadata: Metadata = {
   title: {
-    default: "Braind And Beyond",
-    template: "%s | Braind And Beyond",
+    default: "Braid And Beyond",
+    template: "%s | Braid And Beyond",
   },
   description: "Natural skincare — gentle, effective, and science-backed.",
 };
@@ -48,6 +49,10 @@ export default function RootLayout({
             <Footer />
           </div>
           <CartDrawer />
+          <WhatsAppChat
+            phoneNumber="233XXXXXXXXX"
+            message="Hello! I'd like to know more about your braiding services."
+          />
         </CartProvider>
       </body>
     </html>

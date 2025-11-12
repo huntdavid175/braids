@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 import { gqlRequest } from "../lib/wpClient";
 
 export const metadata: Metadata = {
-  title: "Shipping Policy | Braind And Beyond",
+  title: "Shipping Policy | Braid And Beyond",
 };
 
 type ShippingPolicyQuery = {

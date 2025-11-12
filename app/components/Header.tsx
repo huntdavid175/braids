@@ -1,11 +1,13 @@
 "use client";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { useCart } from "./CartProvider";
+import { useState } from "react";
 
 export default function Header() {
   const { open, items } = useCart();
   const count = items.reduce((sum, i) => sum + i.qty, 0);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   return (
     <header>
       {/* Top shipping bar */}
@@ -27,14 +29,11 @@ export default function Header() {
       >
         {/* Brand */}
         <Link href="/" className="tracking-[0.2em] text-sm font-semibold">
-          BRAIND AND BEYOND
+          BRAID AND BEYOND
         </Link>
 
         {/* Center menu */}
         <nav className="hidden md:flex items-center gap-10 text-sm">
-          <Link href="/shop" className="hover:opacity-80 transition-opacity">
-            Shop
-          </Link>
           <Link
             href="/services"
             className="hover:opacity-80 transition-opacity"
@@ -51,11 +50,10 @@ export default function Header() {
 
         {/* Right icons */}
         <div className="flex items-center gap-3">
-          <button
+          {/* <button
             aria-label="Search"
             className="h-10 w-10 rounded-full border border-black/10 flex items-center justify-center"
           >
-            {/* Search icon */}
             <svg
               width="18"
               height="18"
@@ -69,7 +67,7 @@ export default function Header() {
               <circle cx="11" cy="11" r="8"></circle>
               <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
             </svg>
-          </button>
+          </button> */}
           {/* <button
             aria-label="Account"
             className="h-10 w-10 rounded-full border border-black/10 flex items-center justify-center"
@@ -117,8 +115,97 @@ export default function Header() {
               </span>
             )}
           </button>
+          {/* Mobile hamburger menu */}
+          <button
+            aria-label="Menu"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            className="md:hidden h-10 w-10 rounded-full border border-black/10 flex items-center justify-center"
+          >
+            {isMobileMenuOpen ? (
+              // Close icon (X)
+              <svg
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+              </svg>
+            ) : (
+              // Hamburger icon
+              <svg
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <line x1="3" y1="12" x2="21" y2="12"></line>
+                <line x1="3" y1="6" x2="21" y2="6"></line>
+                <line x1="3" y1="18" x2="21" y2="18"></line>
+              </svg>
+            )}
+          </button>
         </div>
       </motion.div>
+
+      {/* Mobile menu tray */}
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <>
+            {/* Backdrop */}
+            <motion.div
+              className="fixed inset-0 bg-black/50 z-40 md:hidden"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setIsMobileMenuOpen(false)}
+            />
+            {/* Menu tray */}
+            <motion.div
+              className="fixed top-0 left-0 right-0 bg-white z-50 md:hidden shadow-lg"
+              initial={{ y: -100, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              exit={{ y: -100, opacity: 0 }}
+              transition={{ type: "spring", damping: 25, stiffness: 200 }}
+            >
+              <nav className="max-w-[1360px] mx-auto px-4 py-6">
+                <div className="flex flex-col gap-4">
+                  <Link
+                    href="/services"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="text-base font-medium text-black hover:text-[#80461B] transition-colors py-2"
+                  >
+                    Services
+                  </Link>
+                  <Link
+                    href="/about"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="text-base font-medium text-black hover:text-[#80461B] transition-colors py-2"
+                  >
+                    About
+                  </Link>
+                  <Link
+                    href="/contact"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="text-base font-medium text-black hover:text-[#80461B] transition-colors py-2"
+                  >
+                    Contact
+                  </Link>
+                </div>
+              </nav>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
     </header>
   );
 }

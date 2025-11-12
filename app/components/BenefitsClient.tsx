@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import { useEffect, useRef } from "react";
 
 export type BenefitItem = { src: string; alt?: string | null; label: string };
 
@@ -31,6 +32,67 @@ export default function BenefitsClient({
     { src: "/assets/images/client_3.jpg", alt: "Client 3" },
     { src: "/assets/images/client_4.jpg", alt: "Client 4" },
   ];
+
+  // Duplicate images for seamless infinite loop
+  const duplicatedImages = [...images, ...images];
+
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const animationRef = useRef<number | null>(null);
+  const positionRef = useRef(0);
+
+  useEffect(() => {
+    const scrollContainer = scrollRef.current;
+    if (!scrollContainer) return;
+
+    // Wait for layout to calculate accurate widths
+    const calculateWidth = () => {
+      const children = Array.from(scrollContainer.children);
+      const halfPoint = children.length / 2;
+      let width = 0;
+
+      for (let i = 0; i < halfPoint; i++) {
+        const child = children[i] as HTMLElement;
+        if (child) {
+          // gap-4 on mobile (16px), gap-6 on desktop (24px)
+          const gap = window.innerWidth >= 768 ? 24 : 16;
+          width += child.offsetWidth + gap;
+        }
+      }
+
+      return width;
+    };
+
+    // Use a timeout to ensure DOM is fully rendered
+    const initTimeout = setTimeout(() => {
+      const scrollSpeed = 0.25; // pixels per frame (adjust for speed - higher = faster)
+      let singleSetWidth = calculateWidth();
+
+      const animate = () => {
+        if (scrollContainer) {
+          positionRef.current += scrollSpeed;
+
+          // When we've scrolled through one full set, reset to 0 seamlessly
+          // This happens instantly so there's no visible jump
+          if (positionRef.current >= singleSetWidth) {
+            positionRef.current = positionRef.current - singleSetWidth;
+          }
+
+          scrollContainer.style.transform = `translateX(-${positionRef.current}px)`;
+          scrollContainer.style.transition = "none"; // No transition for instant reset
+          animationRef.current = requestAnimationFrame(animate);
+        }
+      };
+
+      animationRef.current = requestAnimationFrame(animate);
+    }, 100);
+
+    return () => {
+      clearTimeout(initTimeout);
+      if (animationRef.current) {
+        cancelAnimationFrame(animationRef.current);
+      }
+    };
+  }, []);
   return (
     <motion.section
       className="bg-white rounded-3xl mt-24 py-4 md:py-8 overflow-hidden"
@@ -56,10 +118,10 @@ export default function BenefitsClient({
           />
           <div className="mt-8 flex justify-start">
             <Link
-              href="/shop"
+              href="/contact"
               className="inline-flex items-center justify-center rounded-full bg-[#80461B] text-white px-8 py-4 text-base font-medium transition-colors hover:bg-black"
             >
-              Shop Now
+              Contact Us
             </Link>
           </div>
         </motion.div>
@@ -67,11 +129,15 @@ export default function BenefitsClient({
         {/* Left: Horizontal gallery */}
         <motion.div className="relative order-2 md:order-1" variants={item}>
           <div className="relative -mx-4 md:mx-0">
-            <div className="marquee-container h-[360px] md:h-[440px] px-4 md:px-0">
-              <div className="marquee-track flex gap-4 md:gap-6 h-full">
-                {images.map((img, idx) => (
+            <div className="marquee-container h-[360px] md:h-[440px] px-4 md:px-0 overflow-hidden">
+              <div
+                ref={scrollRef}
+                className="flex gap-4 md:gap-6 h-full"
+                style={{ willChange: "transform" }}
+              >
+                {duplicatedImages.map((img, idx) => (
                   <div
-                    key={idx}
+                    key={`${img.src}-${idx}`}
                     className="relative shrink-0 w-[300px] md:w-[360px] h-full rounded-2xl overflow-hidden"
                   >
                     <Image

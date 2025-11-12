@@ -17,7 +17,7 @@ export default function Footer() {
           {/* Left: Brand and signup */}
           <div className="lg:col-span-2">
             <p className="font-heading text-lg tracking-wider">
-              BRAIND AND BEYOND
+              BRAID AND BEYOND
             </p>
             <p className="mt-6 text-base text-white/80">
               Join our VIP list to receive exclusive discounts and product
@@ -99,14 +99,6 @@ export default function Footer() {
             <div>
               <p className="text-white/80 mb-4">Company</p>
               <ul className="space-y-3 text-white">
-                <li>
-                  <Link
-                    href="/shop"
-                    className="transition-colors hover:text-[#80461B]"
-                  >
-                    Shop
-                  </Link>
-                </li>
                 <li>
                   <Link
                     href="/services"

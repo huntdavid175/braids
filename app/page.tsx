@@ -4,11 +4,11 @@ import Benefits from "./components/Benefits";
 import BestSellers from "./components/BestSellers";
 import SkinConcerns from "./components/SkinConcerns";
 import BrandVideo from "./components/BrandVideo";
-import Testimonials from "./components/Testimonials";
+import RecentWorks from "./components/RecentWorks";
 import { gqlRequest } from "./lib/wpClient";
 
 export const metadata: Metadata = {
-  title: "Home | Braind And Beyond",
+  title: "Home | Braid And Beyond",
 };
 
 type HomeQuery = {
@@ -94,9 +94,9 @@ export default async function Home() {
         />
         <Benefits />
         {/* <BestSellers /> */}
-        <SkinConcerns title="Our Top Braiding Services" />
+        <SkinConcerns title="Our Top Services" />
         <BrandVideo />
-        <Testimonials />
+        <RecentWorks />
       </main>
     );
   } catch (e) {

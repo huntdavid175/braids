@@ -19,7 +19,7 @@ export async function generateMetadata({
         .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
         .join(" ")
     : "Product";
-  return { title: `${pretty} | Braind And Beyond` };
+  return { title: `${pretty} | Braid And Beyond` };
 }
 
 type ProductBySlugQuery = {

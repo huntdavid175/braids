@@ -52,30 +52,31 @@ export default function AboutStory({
           ) : (
             <>
               <p>
-                Our journey started with a simple yet powerful mission: to
-                provide high-quality skincare solutions for people of color. As
-                a brand, we understand that melanin-rich skin requires unique
-                care. Inspired by the challenge of finding effective products,
-                we created a brand that blends nature and science to meet these
-                needs head‑on.
-              </p>
-              <p className="mt-6">
-                Born out of the desire to address concerns like
-                hyperpigmentation, dryness, and acne, Braind And Beyond is a
-                celebration of the power of botanicals. We carefully select
-                ingredients that nourish, heal, and protect, ensuring every
-                product is backed by research to deliver real, visible results.
-              </p>
-              <p className="mt-6">
-                Our commitment goes beyond skincare—we empower our community
-                with knowledge so everyone feels confident and informed in their
-                routine. We believe skincare should be simple, effective, and
-                sustainable.
-              </p>
-              <p className="mt-6">
-                Every product we create is designed with care for both the skin
-                and the planet, using eco‑friendly practices and striving for
-                continuous improvement.
+                Founded in the heart of Ghana, Braid & Beyond was created from a
+                deep love for beauty, culture, and self-expression. What began
+                as a passion for creative hairstyling has grown into a trusted
+                salon where every braid is crafted with skill, care, and pride.{" "}
+              </p>{" "}
+              <p>
+                {" "}
+                At Braid & Beyond, we believe braiding is more than a hairstyle
+                — it’s a reflection of identity, heritage, and confidence. Our
+                team of expert stylists blends traditional African techniques
+                with modern trends to create looks that are stylish, protective,
+                and uniquely you.{" "}
+              </p>{" "}
+              <p>
+                {" "}
+                From knotless braids and box braids to twists and cornrows, we
+                focus on precision, comfort, and beauty that lasts. Every
+                appointment is a moment of self-care — a chance to relax, renew,
+                and celebrate your natural crown.{" "}
+              </p>{" "}
+              <p>
+                {" "}
+                We’re more than a salon; we’re a space where beauty meets
+                culture, and every client leaves feeling bold, confident, and
+                beyond beautiful.{" "}
               </p>
             </>
           )}

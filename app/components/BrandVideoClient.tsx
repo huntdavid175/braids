@@ -23,7 +23,7 @@ export default function BrandVideoClient({
           muted
           loop
           playsInline
-          src={videoUrl || "/assets/videos/shop_video.mp4"}
+          src={videoUrl || "/assets/videos/shop_video2.mp4"}
         />
         <div className="pointer-events-none absolute inset-0 bg-black/50" />
         <motion.div

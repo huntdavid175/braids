@@ -5,7 +5,7 @@ import ContactMap from "../components/ContactMap";
 import OpeningHours from "../components/OpeningHours";
 
 export const metadata: Metadata = {
-  title: "Contact Us | Braind And Beyond",
+  title: "Contact Us | Braid And Beyond",
 };
 
 export default function ContactPage() {

@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
 import BrandVideo from "../components/BrandVideo";
-import Testimonials from "../components/Testimonials";
+import RecentWorks from "../components/RecentWorks";
 import AboutMission from "../components/AboutMission";
 import AboutVision from "../components/AboutVision";
 import AboutStory from "../components/AboutStory";
 import { gqlRequest } from "../lib/wpClient";
 
 export const metadata: Metadata = {
-  title: "About | Braind And Beyond",
+  title: "About | Braid And Beyond",
 };
 
 type AboutQuery = {
@@ -73,11 +73,11 @@ export default async function AboutPage() {
 
   return (
     <main className="max-w-[1498px]  mx-auto md:px-6 px-4 pb-16">
-      <AboutMission text={missionText} imageUrl={missionImage} />
-      <AboutVision text={visionText} imageUrl={visionImage} />
-      <AboutStory text={storyText} imageUrl={storyImage} />
+      {/* <AboutMission text={missionText} imageUrl={missionImage} />
+      <AboutVision text={visionText} imageUrl={visionImage} /> */}
+      <AboutStory text={""} imageUrl={visionImage} />
       <BrandVideo />
-      <Testimonials />
+      <RecentWorks />
     </main>
   );
 }

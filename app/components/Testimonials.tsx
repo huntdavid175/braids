@@ -1,181 +1,225 @@
 "use client";
 
-import { useMemo, useState } from "react";
-import { Inter } from "next/font/google";
+import Image from "next/image";
 import { motion } from "framer-motion";
 
-const inter = Inter({ subsets: ["latin"] });
-
-type Testimonial = { quote: string; author: string };
+type Testimonial = {
+  quote: string;
+  author: string;
+  service: string;
+  imageUrl: string;
+  rating: number;
+  location?: string;
+};
 
 const TESTIMONIALS: Testimonial[] = [
   {
     quote:
-      "I've struggled with dark spots for years, but after using Braind And Beyond, my skin looks more even and radiant! The moisturizer keeps my skin hydrated all day without feeling greasy. Love it!",
-    author: "Aisha M.",
+      "Absolutely love my box braids! The stylist was so professional and took her time. My hair feels healthy and the braids are so neat. I've gotten so many compliments!",
+    author: "Aisha Mensah",
+    service: "Box Braids",
+    imageUrl: "/assets/images/client_1.jpg",
+    rating: 5,
+    location: "Accra",
   },
   {
     quote:
-      "This is the first skincare brand that truly understands melanin-rich skin. My complexion is glowing, and the shea butter moisturizer is a must-have. Highly recommend!",
-    author: "David O.",
+      "Best braiding experience I've had! The knotless braids are so comfortable and look amazing. The salon is clean and the staff is friendly. Highly recommend!",
+    author: "Kemi Adjei",
+    service: "Knotless Braids",
+    imageUrl: "/assets/images/client_2.jpg",
+    rating: 5,
+    location: "Kumasi",
   },
   {
     quote:
-      "My hyperpigmentation has visibly reduced, and my skin feels healthier. The Vitamin C serum is now a staple in my routine!",
-    author: "Kemi A.",
+      "I got goddess braids for my birthday and they turned out perfect! The attention to detail is incredible. My hair has never looked better. Will definitely be back!",
+    author: "Sarah Osei",
+    service: "Goddess Braids",
+    imageUrl: "/assets/images/client_3.jpg",
+    rating: 5,
+    location: "Accra",
   },
   {
     quote:
-      "Finally a brand that caters to my skin needs. The cleanser is gentle yet effective, and my skin barrier thanks me!",
-    author: "Samuel T.",
+      "The cornrows are so clean and well done. I love how they styled it with beads. The service was quick but thorough. My hair feels great and looks amazing!",
+    author: "Nana Ama",
+    service: "Cornrows",
+    imageUrl: "/assets/images/client_4.jpg",
+    rating: 5,
+    location: "Tema",
+  },
+  {
+    quote:
+      "Got my micro braids done and I'm in love! They're so small and neat, exactly what I wanted. The stylist was patient and made sure I was comfortable throughout.",
+    author: "Maame Yaa",
+    service: "Micro Braids",
+    imageUrl: "/assets/images/client_1.jpg",
+    rating: 5,
+    location: "Accra",
+  },
+  {
+    quote:
+      "Fulani braids done right! The styling is beautiful and the braids are so well done. I've been coming here for months and they never disappoint. Best salon in town!",
+    author: "Ama Serwaa",
+    service: "Fulani Braids",
+    imageUrl: "/assets/images/client_2.jpg",
+    rating: 5,
+    location: "Kumasi",
   },
 ];
 
-function chunk<T>(arr: T[], size: number): T[][] {
-  const res: T[][] = [];
-  for (let i = 0; i < arr.length; i += size) res.push(arr.slice(i, i + size));
-  return res;
-}
+// Duplicate testimonials for seamless loop
+const DUPLICATED_TESTIMONIALS = [...TESTIMONIALS, ...TESTIMONIALS];
 
 export default function Testimonials() {
-  const [index, setIndex] = useState(0);
-  const [fading, setFading] = useState(false);
-
-  // Build logical pairs; we will keep the cards static and only change their content with a fade.
-  const pairs = useMemo(() => chunk(TESTIMONIALS, 2), []);
-  const count = pairs.length;
-
-  const go = (dir: -1 | 1) => {
-    setFading(true);
-    window.setTimeout(() => {
-      setIndex((i) => (i + dir + count) % count);
-      setFading(false);
-    }, 280);
+  const container = {
+    hidden: { opacity: 0, y: 24 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.8 },
+    },
   };
-
-  const prev = () => go(-1);
-  const next = () => go(1);
 
   return (
     <motion.section
       className="mt-24"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.9, ease: "easeOut" }}
+      initial="hidden"
+      animate="visible"
+      variants={container}
     >
-      <div className="flex items-center justify-between mb-6 md:mb-10">
+      <div className="mb-6 md:mb-10">
         <h3 className="font-heading text-4xl md:text-5xl text-black ls-title">
           What Our Clients Say
         </h3>
-        <div className="hidden md:flex items-center gap-3">
-          <button
-            aria-label="Previous"
-            onClick={prev}
-            className="h-10 w-10 rounded-full border border-black/10 flex items-center justify-center"
-          >
-            <svg
-              width="18"
-              height="18"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <path d="M15 18l-6-6 6-6" />
-            </svg>
-          </button>
-          <button
-            aria-label="Next"
-            onClick={next}
-            className="h-10 w-10 rounded-full border border-black/10 flex items-center justify-center"
-          >
-            <svg
-              width="18"
-              height="18"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <path d="M9 6l6 6-6 6" />
-            </svg>
-          </button>
-        </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {pairs[index].map((t, tIdx) => (
-          <motion.div
-            key={`${index}-${tIdx}`}
-            className="bg-white rounded-3xl p-6 md:p-12 shadow-sm ring-1 ring-black/5 h-[300px] md:h-[340px]"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
-          >
+      <div className="relative overflow-x-hidden overflow-y-visible pb-4">
+        <div className="flex gap-6 animate-scroll">
+          {/* First set */}
+          {DUPLICATED_TESTIMONIALS.map((testimonial, idx) => (
             <div
-              className={`h-full flex flex-col justify-between transition-all duration-300 ease-out ${
-                fading ? "opacity-0 translate-y-2" : "opacity-100 translate-y-0"
-              }`}
+              key={`first-${idx}`}
+              className="shrink-0 w-[calc(100%-1.5rem)] sm:w-[calc(50%-0.75rem)] lg:w-[calc(33.333%-1rem)]"
             >
-              <blockquote
-                className={`${inter.className} ls-tight text-center text-lg md:text-2xl text-black/80 leading-relaxed`}
-              >
-                <span
-                  style={{ letterSpacing: "-1.5px", display: "inline-block" }}
-                >
-                  {`"${t.quote}"`}
-                </span>
-              </blockquote>
-              <p className="mt-8 text-center font-heading text-2xl text-black">
-                {t.author}
-              </p>
-            </div>
-          </motion.div>
-        ))}
-      </div>
+              <div className="bg-white rounded-3xl overflow-hidden shadow-sm ring-1 ring-black/5 group h-full">
+                {/* Image Section */}
+                <div className="relative w-full h-[280px] md:h-[320px] overflow-hidden">
+                  <Image
+                    src={testimonial.imageUrl}
+                    alt={`${testimonial.author} with ${testimonial.service}`}
+                    fill
+                    className="object-cover transition-transform duration-500 ease-out group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-linear-to-t from-black/60 via-black/20 to-transparent" />
+                  {/* Service Badge */}
+                  <div className="absolute top-4 left-4">
+                    <span className="px-4 py-2 rounded-full bg-[#80461B] text-white text-sm font-medium">
+                      {testimonial.service}
+                    </span>
+                  </div>
+                  {/* Rating */}
+                  <div className="absolute top-4 right-4 flex items-center gap-1">
+                    {Array.from({ length: 5 }).map((_, i) => (
+                      <svg
+                        key={i}
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill={i < testimonial.rating ? "#F0B429" : "#E2E8F0"}
+                        aria-hidden
+                      >
+                        <path d="M12 .587l3.668 7.431 8.2 1.193-5.934 5.786 1.402 8.168L12 18.896l-7.336 3.869 1.402-8.168L.132 9.211l8.2-1.193z" />
+                      </svg>
+                    ))}
+                  </div>
+                </div>
 
-      {/* Mobile controls duplicate for accessibility */}
-      <div className="flex md:hidden items-center justify-center gap-3 mt-6">
-        <button
-          aria-label="Previous"
-          onClick={prev}
-          className="h-10 w-10 rounded-full border border-black/10 flex items-center justify-center"
-        >
-          <svg
-            width="18"
-            height="18"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2.5"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <path d="M15 18l-6-6 6-6" />
-          </svg>
-        </button>
-        <button
-          aria-label="Next"
-          onClick={next}
-          className="h-10 w-10 rounded-full border border-black/10 flex items-center justify-center"
-        >
-          <svg
-            width="18"
-            height="18"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2.5"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <path d="M9 6l6 6-6 6" />
-          </svg>
-        </button>
+                {/* Content Section */}
+                <div className="p-6 md:p-8">
+                  <blockquote className="text-base md:text-lg text-black/80 leading-relaxed mb-6 line-clamp-4">
+                    "{testimonial.quote}"
+                  </blockquote>
+
+                  <div className="flex items-center justify-between pt-4 border-t border-black/5">
+                    <div>
+                      <p className="font-heading text-lg md:text-xl text-black font-medium">
+                        {testimonial.author}
+                      </p>
+                      {testimonial.location && (
+                        <p className="text-sm text-black/50 mt-1">
+                          {testimonial.location}
+                        </p>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+          {/* Duplicate set for seamless loop */}
+          {DUPLICATED_TESTIMONIALS.map((testimonial, idx) => (
+            <div
+              key={`second-${idx}`}
+              className="shrink-0 w-[calc(100%-1.5rem)] sm:w-[calc(50%-0.75rem)] lg:w-[calc(33.333%-1rem)]"
+            >
+              <div className="bg-white rounded-3xl overflow-hidden shadow-sm ring-1 ring-black/5 group h-full">
+                {/* Image Section */}
+                <div className="relative w-full h-[280px] md:h-[320px] overflow-hidden">
+                  <Image
+                    src={testimonial.imageUrl}
+                    alt={`${testimonial.author} with ${testimonial.service}`}
+                    fill
+                    className="object-cover transition-transform duration-500 ease-out group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-linear-to-t from-black/60 via-black/20 to-transparent" />
+                  {/* Service Badge */}
+                  <div className="absolute top-4 left-4">
+                    <span className="px-4 py-2 rounded-full bg-[#80461B] text-white text-sm font-medium">
+                      {testimonial.service}
+                    </span>
+                  </div>
+                  {/* Rating */}
+                  <div className="absolute top-4 right-4 flex items-center gap-1">
+                    {Array.from({ length: 5 }).map((_, i) => (
+                      <svg
+                        key={i}
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill={i < testimonial.rating ? "#F0B429" : "#E2E8F0"}
+                        aria-hidden
+                      >
+                        <path d="M12 .587l3.668 7.431 8.2 1.193-5.934 5.786 1.402 8.168L12 18.896l-7.336 3.869 1.402-8.168L.132 9.211l8.2-1.193z" />
+                      </svg>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Content Section */}
+                <div className="p-6 md:p-8">
+                  <blockquote className="text-base md:text-lg text-black/80 leading-relaxed mb-6 line-clamp-4">
+                    "{testimonial.quote}"
+                  </blockquote>
+
+                  <div className="flex items-center justify-between pt-4 border-t border-black/5">
+                    <div>
+                      <p className="font-heading text-lg md:text-xl text-black font-medium">
+                        {testimonial.author}
+                      </p>
+                      {testimonial.location && (
+                        <p className="text-sm text-black/50 mt-1">
+                          {testimonial.location}
+                        </p>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     </motion.section>
   );
