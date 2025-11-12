@@ -29,7 +29,8 @@ export const metadata: Metadata = {
     default: "Braid And Beyond",
     template: "%s | Braid And Beyond",
   },
-  description: "Natural skincare — gentle, effective, and science-backed.",
+  description:
+    "Discover expert braiders specializing in knotless braids, box braids, cornrows, and protective styles. Book your appointment today and leave with braids you’ll love.",
 };
 
 export default function RootLayout({
