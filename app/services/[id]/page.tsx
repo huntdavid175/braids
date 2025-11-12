@@ -1,7 +1,7 @@
 import Testimonials from "@/app/components/Testimonials";
 import BrandVideo from "@/app/components/BrandVideo";
-import CollectionGrid from "@/app/components/CollectionGrid";
-import CollectionHero from "@/app/components/CollectionHero";
+import ServicesGridClient from "@/app/components/ServicesGridClient";
+import ShopHero from "@/app/components/ShopHero";
 import type { Metadata } from "next";
 
 export async function generateMetadata({
@@ -17,21 +17,31 @@ export async function generateMetadata({
         .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
         .join(" ")
     : "Services";
-  return { title: `Services/${pretty} | Braind And Beyond` };
+  return { title: `${pretty} | Braind And Beyond` };
 }
 
-export default async function CollectionPage({
+export default async function ServicePage({
   params,
 }: {
   params: Promise<{ id?: string }>;
 }) {
   const awaited = await params;
-  const slug = typeof awaited?.id === "string" ? awaited.id : "";
+  const serviceId = typeof awaited?.id === "string" ? awaited.id : "";
+  const serviceTitle = serviceId
+    ? serviceId
+        .split("-")
+        .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
+        .join(" ")
+    : "Services";
 
   return (
     <main className="max-w-[1498px]  mx-auto md:px-6 px-4 pb-16">
-      <CollectionHero />
-      <CollectionGrid categoryParam={slug} />
+      <ShopHero
+        title={serviceTitle}
+        description="Choose from our selection of professional services and pricing options."
+        imageUrl="/assets/images/client_1.jpg"
+      />
+      <ServicesGridClient serviceId={serviceId} />
       <BrandVideo />
       <Testimonials />
     </main>

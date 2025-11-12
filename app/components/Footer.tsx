@@ -123,6 +123,14 @@ export default function Footer() {
                     About
                   </Link>
                 </li>
+                <li>
+                  <Link
+                    href="/contact"
+                    className="transition-colors hover:text-[#80461B]"
+                  >
+                    Contact
+                  </Link>
+                </li>
               </ul>
             </div>
             <div>
