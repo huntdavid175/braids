@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 
 const HERO_IMAGE_URL = "assets/images/hero1.png";
+const VIDEO_SRC = "assets/videos/hero_video.mp4";
 
 type HeroProps = {
   titleOverride?: string;
@@ -47,18 +48,20 @@ export default function Hero({
           variants={item}
         >
           <motion.h1
-            className="font-heading text-5xl md:text-7xl leading-tight tracking-tight text-black text-center md:text-left ls-title"
+            className="font-heading text-5xl md:text-7xl leading-tight tracking-tight text-[#492201] text-center md:text-left ls-title"
             variants={text}
           >
             {titleOverride ? (
               <span dangerouslySetInnerHTML={{ __html: titleOverride }} />
-            ) : null}
+            ) : (
+              <span>Slay Every Look, One Braid at a Time</span>
+            )}
           </motion.h1>
 
           <div className="mt-8 flex justify-center md:justify-start">
             <Link
               href="/shop"
-              className="inline-flex items-center justify-center rounded-full bg-[#74a636] text-white px-8 py-4 text-base font-medium transition-colors hover:bg-black"
+              className="inline-flex items-center justify-center rounded-full bg-[#80461B] text-white px-8 py-4 text-base font-medium transition-colors hover:bg-black"
             >
               Shop Now
             </Link>
@@ -97,7 +100,7 @@ export default function Hero({
 
         {/* Right: Image (do not animate LCP) */}
         <div className="relative w-full h-full min-h-[440px] md:min-h-[640px] rounded-3xl overflow-hidden">
-          <Image
+          {/* <Image
             src={imageOverride || ""}
             // src="/assets/images/hero2.png"
             alt="Smiling woman applying skincare cream"
@@ -105,6 +108,14 @@ export default function Hero({
             sizes="(max-width: 768px) 100vw, 50vw"
             className="object-cover"
             priority
+          /> */}
+          <video
+            src={VIDEO_SRC}
+            className="absolute inset-0 w-full h-full object-cover"
+            autoPlay
+            loop
+            muted
+            playsInline
           />
         </div>
       </div>

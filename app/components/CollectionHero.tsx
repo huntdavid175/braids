@@ -10,6 +10,6 @@ export default function CollectionHero() {
   const pretty = decoded
     .replace(/[-_]+/g, " ")
     .replace(/\b\w/g, (m) => m.toUpperCase());
-  const title = `Collections/${pretty}`;
+  const title = `Services/${pretty}`;
   return <ShopHero title={title} />;
 }

@@ -25,8 +25,8 @@ const headingFont = Bodoni_Moda({
 
 export const metadata: Metadata = {
   title: {
-    default: "Revive Botanicals",
-    template: "%s | Revive Botanicals",
+    default: "Braind And Beyond",
+    template: "%s | Braind And Beyond",
   },
   description: "Natural skincare — gentle, effective, and science-backed.",
 };

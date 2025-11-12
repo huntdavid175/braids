@@ -123,6 +123,12 @@ export default async function BenefitsServer() {
   } catch (_) {}
 
   return (
-    <BenefitsClient title={title} description={description} items={items} />
+    <BenefitsClient
+      title={"<h2>Redefining Braids with a Touch of Class</h2>"}
+      description={
+        "<p>From knotless to tribal braids, we create stunning, long-lasting looks with gentle care. Visit us today for the best braiding experience in Accra</p>"
+      }
+      items={items}
+    />
   );
 }

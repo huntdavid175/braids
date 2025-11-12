@@ -25,6 +25,29 @@ export default function SkinConcernsClient({
     visible: { opacity: 1, y: 0, transition: { duration: 0.65 } },
   };
 
+  const services = [
+    {
+      title: "Braids",
+      imageUrl: "/assets/images/client_1.jpg",
+      slug: "braids",
+    },
+    {
+      title: "Men's Braids",
+      imageUrl: "/assets/images/client_2.jpg",
+      slug: "men-braids",
+    },
+    {
+      title: "Pedicure",
+      imageUrl: "/assets/images/client_3.jpg",
+      slug: "pedicure",
+    },
+    {
+      title: "Nail Art",
+      imageUrl: "/assets/images/client_4.jpg",
+      slug: "nail-art",
+    },
+  ];
+
   return (
     <motion.section
       className="mt-24"
@@ -33,14 +56,14 @@ export default function SkinConcernsClient({
       viewport={{ once: false, amount: 0.2 }}
       variants={container}
     >
-      <h3 className="font-heading text-4xl md:text-5xl text-black mb-8 md:mb-12 ls-title">
+      <h3 className="font-heading text-4xl md:text-5xl text-[#492201] mb-8 md:mb-12 ls-title">
         {title}
       </h3>
       <motion.div
         className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 md:gap-6"
         variants={list}
       >
-        {items.map((c) => {
+        {services.map((c) => {
           // const slug = c.slug;
           const titleTransformed = c.title
             .toLowerCase()
@@ -50,12 +73,12 @@ export default function SkinConcernsClient({
 
           return (
             <motion.div
-              key={c.title}
+              key={c.slug}
               className="group relative rounded-3xl overflow-hidden"
               variants={item}
             >
               <Link
-                href={`/collection/${titleTransformed}`}
+                href={`/services/${titleTransformed}`}
                 className="block relative rounded-3xl overflow-hidden"
               >
                 <div className="relative h-[300px] md:h-[360px]">
@@ -72,7 +95,7 @@ export default function SkinConcernsClient({
                   <p className="text-white font-heading text-3xl md:text-4xl leading-none drop-shadow ls-title capitalize wrap-break-word">
                     {c.title}
                   </p>
-                  <span className="h-10 w-10 rounded-full bg-[#74a636] text-white flex items-center justify-center">
+                  <span className="h-10 w-10 rounded-full bg-[#80461B] text-white flex items-center justify-center">
                     <svg
                       width="18"
                       height="18"

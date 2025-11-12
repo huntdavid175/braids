@@ -61,7 +61,7 @@ export default function AboutStory({
               </p>
               <p className="mt-6">
                 Born out of the desire to address concerns like
-                hyperpigmentation, dryness, and acne, Revive Botanicals is a
+                hyperpigmentation, dryness, and acne, Braind And Beyond is a
                 celebration of the power of botanicals. We carefully select
                 ingredients that nourish, heal, and protect, ensuring every
                 product is backed by research to deliver real, visible results.

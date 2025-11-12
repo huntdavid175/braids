@@ -25,6 +25,12 @@ export default function BenefitsClient({
   };
   const item = { hidden: { opacity: 0, y: 16 }, visible: { opacity: 1, y: 0 } };
 
+  const images = [
+    { src: "/assets/images/client_1.jpg", alt: "Client 1" },
+    { src: "/assets/images/client_2.jpg", alt: "Client 2" },
+    { src: "/assets/images/client_3.jpg", alt: "Client 3" },
+    { src: "/assets/images/client_4.jpg", alt: "Client 4" },
+  ];
   return (
     <motion.section
       className="bg-white rounded-3xl mt-24 py-4 md:py-8 overflow-hidden"
@@ -33,51 +39,51 @@ export default function BenefitsClient({
       variants={container}
     >
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
-        {/* Left: Copy */}
+        {/* Right: Copy */}
         <motion.div
-          className="p-6 md:p-8 order-2 md:order-1 flex flex-col items-start"
+          className="p-6 md:p-8 order-1 md:order-2 flex flex-col items-start"
           variants={item}
         >
           <div
-            className="font-heading text-5xl md:text-7xl leading-tight tracking-tight text-black ls-title"
+            className="font-heading text-5xl md:text-7xl leading-tight tracking-tight text-[#492201] ls-title"
             role="heading"
             aria-level={2}
             dangerouslySetInnerHTML={{ __html: title }}
           />
           <div
-            className="mt-6 text-sm md:text-base text-black/60 "
+            className="mt-6 text-sm md:text-base text-[#492201]/60 "
             dangerouslySetInnerHTML={{ __html: description }}
           />
           <div className="mt-8 flex justify-start">
             <Link
               href="/shop"
-              className="inline-flex items-center justify-center rounded-full bg-[#74a636] text-white px-8 py-4 text-base font-medium transition-colors hover:bg-black"
+              className="inline-flex items-center justify-center rounded-full bg-[#80461B] text-white px-8 py-4 text-base font-medium transition-colors hover:bg-black"
             >
               Shop Now
             </Link>
           </div>
         </motion.div>
 
-        {/* Right: Horizontal gallery */}
-        <motion.div className="relative order-1 md:order-2" variants={item}>
+        {/* Left: Horizontal gallery */}
+        <motion.div className="relative order-2 md:order-1" variants={item}>
           <div className="relative -mx-4 md:mx-0">
             <div className="marquee-container h-[360px] md:h-[440px] px-4 md:px-0">
               <div className="marquee-track flex gap-4 md:gap-6 h-full">
-                {items.map((img, idx) => (
+                {images.map((img, idx) => (
                   <div
                     key={idx}
                     className="relative shrink-0 w-[300px] md:w-[360px] h-full rounded-2xl overflow-hidden"
                   >
                     <Image
                       src={img.src}
-                      alt={img.alt || img.label}
+                      alt={img.alt}
                       fill
                       className="object-cover"
                     />
-                    <span className="absolute bottom-5 left-5 text-white text-3xl font-light font-heading drop-shadow-[0_2px_4px_rgba(0,0,0,0.6)]">
+                    {/* <span className="absolute bottom-5 left-5 text-white text-3xl font-light font-heading drop-shadow-[0_2px_4px_rgba(0,0,0,0.6)]">
                       {img.label}
-                    </span>
-                    <div className="absolute bottom-4 right-4 h-8 w-8 rounded-full bg-[#74a636] text-white flex items-center justify-center">
+                    </span> */}
+                    {/* <div className="absolute bottom-4 right-4 h-8 w-8 rounded-full bg-[#80461B] text-white flex items-center justify-center">
                       {img.label === "Before" ? (
                         <svg
                           width="16"
@@ -105,7 +111,7 @@ export default function BenefitsClient({
                           <path d="M20 6L9 17l-5-5" />
                         </svg>
                       )}
-                    </div>
+                    </div> */}
                   </div>
                 ))}
               </div>

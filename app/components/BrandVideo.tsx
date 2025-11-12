@@ -44,5 +44,10 @@ export default async function BrandVideoServer() {
     }
   } catch (_) {}
 
-  return <BrandVideoClient videoUrl={videoUrl} titleHtml={titleHtml} />;
+  return (
+    <BrandVideoClient
+      videoUrl={""}
+      titleHtml={"<p>Just Walk In <br /> Get Your Braids Done</p>"}
+    />
+  );
 }

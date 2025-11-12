@@ -10,12 +10,12 @@ export default function Header() {
     <header>
       {/* Top shipping bar */}
       <motion.div
-        className="bg-[#74a636] text-white text-center text-sm py-2"
+        className="bg-[#80461B] text-white text-center text-base py-2"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.7, ease: "easeOut" }}
       >
-        Free Shipping on orders $100 or More within Canada and US
+        🎀 WALK-INS ONLY except VIP lounge
       </motion.div>
 
       {/* Main nav */}
@@ -27,7 +27,7 @@ export default function Header() {
       >
         {/* Brand */}
         <Link href="/" className="tracking-[0.2em] text-sm font-semibold">
-          REVIVE BOTANICALS
+          BRAIND AND BEYOND
         </Link>
 
         {/* Center menu */}
@@ -36,10 +36,10 @@ export default function Header() {
             Shop
           </Link>
           <Link
-            href="/collection"
+            href="/services"
             className="hover:opacity-80 transition-opacity"
           >
-            Collection
+            Services
           </Link>
           <Link href="/about" className="hover:opacity-80 transition-opacity">
             About
@@ -109,7 +109,7 @@ export default function Header() {
               <path d="M1 1h4l2.68 12.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
             </svg>
             {count > 0 && (
-              <span className="absolute -top-2 -right-2 h-5 min-w-5 px-1 rounded-full bg-[#74a636] text-white text-xs flex items-center justify-center">
+              <span className="absolute -top-2 -right-2 h-5 min-w-5 px-1 rounded-full bg-[#80461B] text-white text-xs flex items-center justify-center">
                 {count}
               </span>
             )}

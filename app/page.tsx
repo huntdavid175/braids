@@ -8,7 +8,7 @@ import Testimonials from "./components/Testimonials";
 import { gqlRequest } from "./lib/wpClient";
 
 export const metadata: Metadata = {
-  title: "Home | Revive Botanicals",
+  title: "Home | Braind And Beyond",
 };
 
 type HomeQuery = {
@@ -36,20 +36,20 @@ type AvatarsQuery = {
   } | null;
 };
 
-const HOME_QUERY = `
-  query NewQuery {
-    pages(where: {title: "home"}) {
-      edges {
-        node {
-          homeFields { herotitle }
-          featuredImage { node { sourceUrl } }
-          pageId
-          slug
-        }
-      }
-    }
-  }
-`;
+// const HOME_QUERY = `
+//   query NewQuery {
+//     pages(where: {title: "home"}) {
+//       edges {
+//         node {
+//           homeFields { herotitle }
+//           featuredImage { node { sourceUrl } }
+//           pageId
+//           slug
+//         }
+//       }
+//     }
+//   }
+// `;
 
 const AVATARS_QUERY = `
   query NewQuery {
@@ -66,35 +66,35 @@ const AVATARS_QUERY = `
 `;
 
 export default async function Home() {
-  let heroTitle: string | undefined;
-  let heroImage: string | undefined;
-  let avatars: string[] | undefined;
+  // let heroTitle: string | undefined;
+  // let heroImage: string | undefined;
+  // let avatars: string[] | undefined;
   try {
-    const [home, av] = await Promise.all([
-      gqlRequest<HomeQuery>(HOME_QUERY),
-      gqlRequest<AvatarsQuery>(AVATARS_QUERY),
-    ]);
-    const first = home?.pages?.edges?.[0]?.node;
-    heroTitle = first?.homeFields?.herotitle ?? undefined;
-    heroImage = first?.featuredImage?.node?.sourceUrl ?? undefined;
-    const a = av?.post?.avatars;
-    const imgs = [
-      a?.customerImage1?.node?.sourceUrl,
-      a?.customerImage2?.node?.sourceUrl,
-      a?.customerImage3?.node?.sourceUrl,
-      a?.customerImage4?.node?.sourceUrl,
-    ].filter(Boolean) as string[];
-    avatars = imgs.length ? imgs : undefined;
+    //   const [home, av] = await Promise.all([
+    //     // gqlRequest<HomeQuery>(HOME_QUERY),
+    //     gqlRequest<AvatarsQuery>(AVATARS_QUERY),
+    //   ]);
+    //   const first = home?.pages?.edges?.[0]?.node;
+    //   heroTitle = first?.homeFields?.herotitle ?? undefined;
+    //   heroImage = first?.featuredImage?.node?.sourceUrl ?? undefined;
+    //   const a = av?.post?.avatars;
+    //   const imgs = [
+    //     a?.customerImage1?.node?.sourceUrl,
+    //     a?.customerImage2?.node?.sourceUrl,
+    //     a?.customerImage3?.node?.sourceUrl,
+    //     a?.customerImage4?.node?.sourceUrl,
+    //   ].filter(Boolean) as string[];
+    //   avatars = imgs.length ? imgs : undefined;
     return (
       <main className="max-w-[1498px]  mx-auto md:px-6 px-4 pb-16">
         <Hero
-          titleOverride={heroTitle}
-          imageOverride={heroImage}
-          avatars={avatars}
+        // titleOverride={heroTitle}
+        // imageOverride={heroImage}
+        // avatars={avatars}
         />
         <Benefits />
-        <BestSellers />
-        <SkinConcerns title="Shop by Skin Concerns" />
+        {/* <BestSellers /> */}
+        <SkinConcerns title="Our Top Braiding Services" />
         <BrandVideo />
         <Testimonials />
       </main>
